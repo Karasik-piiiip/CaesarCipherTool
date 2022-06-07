@@ -66,6 +66,28 @@ int main(int argc, char *argv[]){
         }
         else if (strcmp("-d", argv[1]) == 0){
             //TODO: decode argv[2] file to "decoded_{argv[2]}" by argv[3] key
+            char filename[strlen(argv[2]) + 1];
+            strcpy(filename, argv[2]);
+            unsigned int key = atoi(argv[3]);
+            long size;
+            FILE *fp;
+
+            fp = fopen(filename, "r");
+            fseek(fp, 0L, SEEK_END);
+            size = ftell(fp);
+            fseek(fp, 0L, SEEK_SET);
+            unsigned char buf[size];
+            fread(buf, 1, size, fp);
+            fclose(fp);
+
+            decode(buf, key, size);
+            printf("%s\n", buf);
+
+            char template[255] = "decoded_";
+            strcat(template, filename);
+            fp = fopen(template, "w");
+            fwrite(buf, 1, size, fp);
+            fclose(fp);
         }
         else if (strcmp("-i", argv[1]) == 0){
             //TODO: decode string at argv[2] and print it.
