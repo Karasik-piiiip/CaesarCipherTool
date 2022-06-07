@@ -6,6 +6,16 @@
 #include "encrypter.h"
 #include "decode.h"
 
+void unknownCommand(){
+    printf("Unknown command!\n");
+    printf("You can use:\n-e [filename] [step-key] to encrypt string from [filename];\n");
+    printf("-d [filename] [step-key] to decode string from [filename]\n");
+    printf("-i [word] [step-key] to encrypt single word from command line\n");
+    printf("[filename] to decode text with bruting.\n");
+    printf("-w [word] [step-key] to decode single word from command line\n");
+    printf("-h for help and -v for version\n");
+}
+
 int main(int argc, char *argv[]){
     /*
     'a' on unsigned char = 97
@@ -105,8 +115,11 @@ int main(int argc, char *argv[]){
             decode(text, key, sizeof(text));
             printf("%s\n", text);
         }
+        else{
+            unknownCommand();
+        }
     }
     else{
-        printf("invalid arguments!\n");
+        unknownCommand();
     }
 }
