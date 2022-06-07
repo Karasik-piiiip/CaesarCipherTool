@@ -1,4 +1,7 @@
+#define VERSION "0.1-b"
+
 #include <stdio.h>
+#include <string.h>
 #include "encrypter.h"
 #include "decode.h"
 
@@ -20,20 +23,29 @@ int main(int argc, char *argv[]){
             printf("%c\n", a[i]);
     }
     else if(argc==2){
-        //TODO: brute from file argv[0]
+        if(strcmp("-h", argv[1]) == 0 || strcmp("-help", argv[1]) == 0 || strcmp("--h", argv[1]) == 0 || strcmp("--help", argv[1]) == 0){
+            printf("CaesarCipherTool - console tool for encrypting, decoding and bruting text with Caesar cipher.\n");
+            printf("You can open it in console without arguments and work in console, or\n");
+            printf("you can give to arguments 'operation' -e (to encrypt) or -d (to decode) at first argument,\n");
+            printf("filename (in this directory only) to encrypt or decode at second argument\n");
+            printf("and the key (offset) at third argument.\n");
+        }
+        else if(strcmp("-v", argv[1]) == 0 || strcmp("-version", argv[1]) == 0 || strcmp("--v", argv[1]) == 0 || strcmp("--version", argv[1]) == 0){
+            printf("%s\n", VERSION);
+        }
+        else{
+            //TODO: brute from file argv[1]
+        }
     }
     else if(argc==4){
-        if (argv[0] == "-e"){
-            //TODO: encrypt argv[1] file to "decoded_{argv[1].txt}" by argv[2] key
+        if (argv[1] == "-e"){
+            //TODO: encrypt argv[2] file to "decoded_{argv[2]}" by argv[3] key
         }
-        else if (argv[0]== "-d"){
-            //TODO: decode argv[1] file to "decoded_{argv[1].txt}" by argv[2] key
+        else if (argv[1]== "-d"){
+            //TODO: decode argv[2] file to "decoded_{argv[2]}" by argv[3] key
         }
     }
     else{
         printf("invalid arguments!\n");
     }
-    
-
-    
 }
