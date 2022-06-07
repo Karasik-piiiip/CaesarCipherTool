@@ -29,8 +29,8 @@ int main(int argc, char *argv[]){
             printf("you can give to arguments 'operation' -e (to encrypt) or -d (to decode) at first argument,\n");
             printf("filename (in this directory only) to encrypt or decode at second argument\n");
             printf("and the key (offset) at third argument.\n");
-            printf("Use -i to encrypt text in command line without writing to file and\n");
-            printf("-w to decode without writing to file.\n");
+            printf("Use -i to encrypt word in command line without writing to file and\n");
+            printf("-w to decode word without writing to file.\n");
         }
         else if(strcmp("-v", argv[1]) == 0 || strcmp("-version", argv[1]) == 0 || strcmp("--v", argv[1]) == 0 || strcmp("--version", argv[1]) == 0){
             printf("%s\n", VERSION);
@@ -91,6 +91,19 @@ int main(int argc, char *argv[]){
         }
         else if (strcmp("-i", argv[1]) == 0){
             //TODO: decode string at argv[2] and print it.
+            char text[strlen(argv[2]) + 1];
+            strcpy(text, argv[2]);
+            unsigned int key = atoi(argv[3]);
+            encrypt(text, key, sizeof(text));
+            printf("%s\n", text);
+        }
+        else if (strcmp("-w", argv[1]) == 0){
+            //TODO: decode string at argv[2] and print it.
+            char text[strlen(argv[2]) + 1];
+            strcpy(text, argv[2]);
+            unsigned int key = atoi(argv[3]);
+            decode(text, key, sizeof(text));
+            printf("%s\n", text);
         }
     }
     else{
