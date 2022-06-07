@@ -46,7 +46,30 @@ int main(int argc, char *argv[]){
             printf("%s\n", VERSION);
         }
         else{
-            //TODO: brute from file argv[1]
+            char filename[strlen(argv[1]) + 1];
+            strcpy(filename, argv[1]);
+            long size;
+            FILE *fp;
+
+            fp = fopen(filename, "r");
+            fseek(fp, 0L, SEEK_END);
+            size = ftell(fp);
+            fseek(fp, 0L, SEEK_SET);
+            unsigned char buf[size];
+            fread(buf, 1, size, fp);
+            fclose(fp);
+
+            char template[255] = "bruted_";
+            strcat(template, filename);
+            fp = fopen(template, "w");
+            char newline[] = "\n";
+            
+            for(int key=1; key < 25; key++){
+                decode(buf, key, size);
+                fwrite(buf, 1, size, fp);
+                fwrite(newline, 1, 1, fp);
+            }
+            fclose(fp);  
         }
     }
     else if(argc>=3){
