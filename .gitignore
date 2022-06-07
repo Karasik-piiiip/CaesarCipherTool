@@ -1,8 +1,5 @@
-a.out
-CaesarTool
-CaesraTool.exe
-a.exe
-hello.txt
+CaesarTool*
+*.txt
 encrypted_*
 decoded_*
 bruted_*

@@ -1,4 +1,4 @@
-#define VERSION "0.1-b"
+#define VERSION "0.4"
 
 #include <stdio.h>
 #include <string.h>
@@ -23,16 +23,7 @@ int main(int argc, char *argv[]){
     '0' on unsigned char = 48
     '9' on unsigned char = 57
     */
-    if(argc==1){
-        // TODO: inprogram interface.
-
-        // Test funcs
-        unsigned char a[] = "abz\n";
-        decode(a, 1, sizeof(a));
-        for(int i=0; i< 6; i++)
-            printf("%c", a[i]);
-    }
-    else if(argc==2){
+    if(argc==2){
         if(strcmp("-h", argv[1]) == 0 || strcmp("-help", argv[1]) == 0 || strcmp("--h", argv[1]) == 0 || strcmp("--help", argv[1]) == 0){
             printf("CaesarCipherTool - console tool for encrypting, decoding and bruting text with Caesar cipher.\n");
             printf("You can open it in console without arguments and work in console, or\n");
@@ -43,7 +34,19 @@ int main(int argc, char *argv[]){
             printf("-w to decode word without writing to file.\n");
         }
         else if(strcmp("-v", argv[1]) == 0 || strcmp("-version", argv[1]) == 0 || strcmp("--v", argv[1]) == 0 || strcmp("--version", argv[1]) == 0){
-            printf("%s\n", VERSION);
+            printf(" $$$$$$\\                                                           $$$$$$\\  $$\\           $$\\                                 $$$$$$$$\\                  $$\\ \n");
+            printf("$$  __$$\\                                                         $$  __$$\\ \\__|          $$ |                                \\__$$  __|                 $$ |\n");
+            printf("$$ /  \\__| $$$$$$\\   $$$$$$\\   $$$$$$$\\  $$$$$$\\   $$$$$$\\        $$ /  \\__|$$\\  $$$$$$\\  $$$$$$$\\   $$$$$$\\   $$$$$$\\           $$ | $$$$$$\\   $$$$$$\\  $$ |\n");
+            printf("$$ |       \\____$$\\ $$  __$$\\ $$  _____| \\____$$\\ $$  __$$\\       $$ |      $$ |$$  __$$\\ $$  __$$\\ $$  __$$\\ $$  __$$\\          $$ |$$  __$$\\ $$  __$$\\ $$ |\n");
+            printf("$$ |       $$$$$$$ |$$$$$$$$ |\\$$$$$$\\   $$$$$$$ |$$ |  \\__|      $$ |      $$ |$$ /  $$ |$$ |  $$ |$$$$$$$$ |$$ |  \\__|         $$ |$$ /  $$ |$$ /  $$ |$$ |\n");
+            printf("$$ |  $$\\ $$  __$$ |$$   ____| \\____$$\\ $$  __$$ |$$ |            $$ |  $$\\ $$ |$$ |  $$ |$$ |  $$ |$$   ____|$$ |               $$ |$$ |  $$ |$$ |  $$ |$$ |\n");
+            printf("\\$$$$$$  |\\$$$$$$$ |\\$$$$$$$\\ $$$$$$$  |\\$$$$$$$ |$$ |            \\$$$$$$  |$$ |$$$$$$$  |$$ |  $$ |\\$$$$$$$\\ $$ |               $$ |\\$$$$$$  |\\$$$$$$  |$$ |\n");
+            printf(" \\______/  \\_______| \\_______|\\_______/  \\_______|\\__|             \\______/ \\__|$$  ____/ \\__|  \\__| \\_______|\\__|               \\__| \\______/  \\______/ \\__|\n");
+            printf("                                                                                $$ |                                                                         \n");
+            printf("                                                                                $$ |                                                                         \n");
+            printf("                                                                                \\__|                                                                         \n");
+            printf("Version %s\n", VERSION);
+            printf("Website - https://nichney.ru \nGithub - https://github.com/Karasik-piiiip/CaesarCipherTool \n");
         }
         else{
             char filename[strlen(argv[1]) + 1];
