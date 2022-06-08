@@ -1,4 +1,4 @@
-#define VERSION "0.4"
+#define VERSION "0.5"
 
 #include <stdio.h>
 #include <string.h>
@@ -17,34 +17,21 @@ void unknownCommand(){
 }
 
 int main(int argc, char *argv[]){
-    /*
-    'a' on unsigned char = 97
-    'z' on unsigned char = 122
-    '0' on unsigned char = 48
-    '9' on unsigned char = 57
-    */
     if(argc==2){
         if(strcmp("-h", argv[1]) == 0 || strcmp("-help", argv[1]) == 0 || strcmp("--h", argv[1]) == 0 || strcmp("--help", argv[1]) == 0){
-            printf("CaesarCipherTool - console tool for encrypting, decoding and bruting text with Caesar cipher.\n");
-            printf("You can open it in console without arguments and work in console, or\n");
-            printf("you can give to arguments 'operation' -e (to encrypt) or -d (to decode) at first argument,\n");
-            printf("filename (in this directory only) to encrypt or decode at second argument\n");
-            printf("and the key (offset) at third argument.\n");
-            printf("Use -i to encrypt word in command line without writing to file and\n");
-            printf("-w to decode word without writing to file.\n");
+            printf("CaesarCipherTool - console tool for encoding, decoding and bruting text with Caesar cipher.\n");
+            printf("You can use:\n-e [filename] [step-key] to encrypt text from [filename];\n");
+            printf("-d [filename] [step-key] to decode text from [filename]\n");
+            printf("-i [word] [step-key] to encrypt single word from command line\n");
+            printf("[filename] to decode text with bruting.\n");
+            printf("-w [word] [step-key] to decode single word from command line\n");
+            printf("-h for help and -v for version\n");
         }
         else if(strcmp("-v", argv[1]) == 0 || strcmp("-version", argv[1]) == 0 || strcmp("--v", argv[1]) == 0 || strcmp("--version", argv[1]) == 0){
-            printf(" $$$$$$\\                                                           $$$$$$\\  $$\\           $$\\                                 $$$$$$$$\\                  $$\\ \n");
-            printf("$$  __$$\\                                                         $$  __$$\\ \\__|          $$ |                                \\__$$  __|                 $$ |\n");
-            printf("$$ /  \\__| $$$$$$\\   $$$$$$\\   $$$$$$$\\  $$$$$$\\   $$$$$$\\        $$ /  \\__|$$\\  $$$$$$\\  $$$$$$$\\   $$$$$$\\   $$$$$$\\           $$ | $$$$$$\\   $$$$$$\\  $$ |\n");
-            printf("$$ |       \\____$$\\ $$  __$$\\ $$  _____| \\____$$\\ $$  __$$\\       $$ |      $$ |$$  __$$\\ $$  __$$\\ $$  __$$\\ $$  __$$\\          $$ |$$  __$$\\ $$  __$$\\ $$ |\n");
-            printf("$$ |       $$$$$$$ |$$$$$$$$ |\\$$$$$$\\   $$$$$$$ |$$ |  \\__|      $$ |      $$ |$$ /  $$ |$$ |  $$ |$$$$$$$$ |$$ |  \\__|         $$ |$$ /  $$ |$$ /  $$ |$$ |\n");
-            printf("$$ |  $$\\ $$  __$$ |$$   ____| \\____$$\\ $$  __$$ |$$ |            $$ |  $$\\ $$ |$$ |  $$ |$$ |  $$ |$$   ____|$$ |               $$ |$$ |  $$ |$$ |  $$ |$$ |\n");
-            printf("\\$$$$$$  |\\$$$$$$$ |\\$$$$$$$\\ $$$$$$$  |\\$$$$$$$ |$$ |            \\$$$$$$  |$$ |$$$$$$$  |$$ |  $$ |\\$$$$$$$\\ $$ |               $$ |\\$$$$$$  |\\$$$$$$  |$$ |\n");
-            printf(" \\______/  \\_______| \\_______|\\_______/  \\_______|\\__|             \\______/ \\__|$$  ____/ \\__|  \\__| \\_______|\\__|               \\__| \\______/  \\______/ \\__|\n");
-            printf("                                                                                $$ |                                                                         \n");
-            printf("                                                                                $$ |                                                                         \n");
-            printf("                                                                                \\__|                                                                         \n");
+            printf("   ___ ___ _____ \n");
+            printf("  / __/ __|_   _|\n");
+            printf(" | (_| (__  | |  \n");
+            printf("  \\___\\___| |_|  \n");
             printf("Version %s\n", VERSION);
             printf("Website - https://nichney.ru \nGithub - https://github.com/Karasik-piiiip/CaesarCipherTool \n");
         }
@@ -67,7 +54,7 @@ int main(int argc, char *argv[]){
             fp = fopen(template, "w");
             char newline[] = "\n";
             
-            for(int key=1; key < 25; key++){
+            for(int key=1; key < 255; key++){
                 decode(buf, key, size);
                 fwrite(buf, 1, size, fp);
                 fwrite(newline, 1, 1, fp);
