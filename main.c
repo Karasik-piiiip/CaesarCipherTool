@@ -1,4 +1,4 @@
-#define VERSION "0.5"
+#define VERSION "0.5.1"
 
 #include <stdio.h>
 #include <string.h>
@@ -88,7 +88,6 @@ int main(int argc, char *argv[]){
             fclose(fp);
         }
         else if (strcmp("-d", argv[1]) == 0){
-            //TODO: decode argv[2] file to "decoded_{argv[2]}" by argv[3] key
             char filename[strlen(argv[2]) + 1];
             strcpy(filename, argv[2]);
             unsigned int key = atoi(argv[3]);
@@ -113,16 +112,14 @@ int main(int argc, char *argv[]){
             fclose(fp);
         }
         else if (strcmp("-i", argv[1]) == 0){
-            //TODO: decode string at argv[2] and print it.
-            char text[strlen(argv[2]) + 1];
+            unsigned char text[strlen(argv[2]) + 1];
             strcpy(text, argv[2]);
             unsigned int key = atoi(argv[3]);
             encrypt(text, key, sizeof(text));
             printf("%s\n", text);
         }
         else if (strcmp("-w", argv[1]) == 0){
-            //TODO: decode string at argv[2] and print it.
-            char text[strlen(argv[2]) + 1];
+            unsigned char text[strlen(argv[2]) + 1];
             strcpy(text, argv[2]);
             unsigned int key = atoi(argv[3]);
             decode(text, key, sizeof(text));
